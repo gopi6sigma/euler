@@ -30,35 +30,26 @@ public class MyBigInt {
     // if any of these are null or empty, NPE should be thrown
     MyBigInt mNorm = removeLeadingZeroes(m);
     MyBigInt nNorm = removeLeadingZeroes(n);
-    int i = m.digits.length - 1;
-    int j = n.digits.length - 1;
-    while (i >= 0 && j >= 0) {
-      int sum = int1.digits[i] - '0' + int2.digits[j] - '0' + carry;
-      result.append((sum % 10));
-      carry = sum / 10;
-      System.out.println("i: " + i + " j " + j + " carry " + carry + " sum " + sum + " result " + result.toString());
-      i--;
-      j--;
+    if (mNorm.digits.length > nNorm.digits.length) return 1;
+    if (mNorm.digits.length < nNorm.digits.length) return -1;
+    for (int i = 0; i < mNorm.digits.length; i++) {
+        if (mNorm.digits[i] > nNorm.digits[i]) return 1;
+        if (mNorm.digits[i] < nNorm.digits[i]) return -1;
     }
+    return 0;
+  }
 
-    while (i >= 0) {
-      int sum = int1.digits[i] - '0' + carry;
-      result.append((sum % 10));
-      carry = sum / 10;
-      i--;
-    }
-
-    while (j >= 0) {
-      int sum = int2.digits[j] - '0' + carry;
-      result.append((sum % 10));
-      carry = sum / 10;
-      j--;
-    }
-
-    if (carry > 0) {
-      result.append(carry);
-    }
-
+  public static MyBigInt multiply(MyBigInt m, MyBigInt n) {
+      if (isEmpty(m) || isEmpty(n)) return null;
+      StringBuffer result = new StringBuffer();
+      int carry = 0;
+      for (int k = 0; k < m.digits.length + n.digits.length; k++) {
+          for (int i = 0; i <= k; i++) {
+              for (int j = 0; j + i <= k; j++) {
+                  int sum = 
+              }
+          }
+      }
   }
 
   public static MyBigInt add(MyBigInt int1, MyBigInt int2) {
@@ -74,7 +65,7 @@ public class MyBigInt {
       int sum = int1.digits[i] - '0' + int2.digits[j] - '0' + carry;
       result.append((sum % 10));
       carry = sum / 10;
-      System.out.println("i: " + i + " j " + j + " carry " + carry + " sum " + sum + " result " + result.toString());
+//      System.out.println("i: " + i + " j " + j + " carry " + carry + " sum " + sum + " result " + result.toString());
       i--;
       j--;
     }
