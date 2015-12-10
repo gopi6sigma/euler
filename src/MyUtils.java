@@ -2,6 +2,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class MyUtils {
+
 	public static long pow(long a, int e) {
 		if (1 == e) return a;
 		long t = pow(a, e / 2); 
